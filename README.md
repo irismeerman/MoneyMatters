@@ -1,4 +1,6 @@
 # MoneyMatters
+Iris Meerman <iris.meerman@student.uva.nl>
+
 
 Met deze app kun je op een overzichtelijke manier je uitgaven bijhouden.
 
@@ -8,11 +10,14 @@ Hier kun je je te besteden bedragen per post opslaan (per maand bijvoorbeeld).
 
 - Groceries, clothes buttons etc.
 
-Hier kun je een bedrag dat je hebt besteed toevoegen per post
+Hier kun je een bedrag dat je hebt besteed toevoegen per post, inclusief datum. 
+Dit wordt vervolgens in een listview gerepresenteerd (note: helaas slaat hij die nog niet op, 
+nog niet aan toegekomen om sqlite onder de knie te krijgen).
 
 - Reset all
 
-Deze optie verwijdert al je besteedde bedragen. Je kunt nu dus weer opnieuw je budgetten besteden
+Deze optie verwijdert al je besteedde bedragen. Je kunt nu dus weer opnieuw je budgetten besteden.
+Dit kun je dus bij het begin van iedere maand doen als je per maand je uitgaven wilt bijhouden.
 
 - Variable expensens vs fixed expenses
 
