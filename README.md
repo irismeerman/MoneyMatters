@@ -1,5 +1,7 @@
 # MoneyMatters
-Iris Meerman <iris.meerman@student.uva.nl>
+Iris Meerman 
+
+Te bereiken via: <iris.meerman@student.uva.nl>
 
 
 Met deze app kun je op een overzichtelijke manier je uitgaven bijhouden.
