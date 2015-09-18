@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MoneyMatters</string>
+    <string name="action_settings">Set budgets</string>
+    <string name="title_activity_settings">Set budgets</string>
+    <string name="title_groceries">Groceries</string>
+    <string name="title_clothes">Clothes</string>
+    <string name="title_travelling">Travelling</string>
+    <string name="title_nightlife">Nightlife</string>
+    <string name="title_dinners">Dinners</string>
+    <string name="title_presents">Presents</string>
+</resources>

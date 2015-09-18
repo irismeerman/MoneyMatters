@@ -1,0 +1,203 @@
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainScreen"
+    android:background="#adccf5c3">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        >
+<!-- Variable costs textview -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Variable expenses"
+            android:id="@+id/variable"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            />
+
+        <!-- Variable costs buttons: groceries, clothes -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout1"
+            android:layout_below="@+id/variable">
+
+        <Button
+            android:id="@+id/groceries"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="addGroceries"
+            android:text="Groceries"
+            android:enabled="true">
+        </Button>
+
+        <Button
+            android:id="@+id/clothes"
+            android:layout_width="0dp"
+            android:onClick="addClothes"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Clothes"
+            android:enabled="true">
+        </Button>
+
+        </LinearLayout>
+
+        <!-- Variable costs: travelling, nightlife -->
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_below="@+id/linearLayout1"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/travelling"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addTravelling"
+                android:text="Travelling">
+            </Button>
+
+            <Button
+                android:id="@+id/nightlife"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addNightlife"
+                android:text="Nightlife">
+            </Button>
+        </LinearLayout>
+
+
+        <!-- Variable costs: dinners, presents-->
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/dinners"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addDinners"
+                android:text="Dinners">
+            </Button>
+
+            <Button
+                android:id="@+id/presents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="addPresents"
+                android:text="Presents">
+            </Button>
+
+        </LinearLayout>
+
+        <!-- Solid costs textview-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Fixed expences"
+            android:id="@+id/solid"
+            android:layout_below="@id/linearLayout3"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <!-- Solid costs buttons: tuition fee, insurances-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_below="@+id/solid"
+            android:id="@+id/linearLayout4"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuition fee"
+                android:layout_weight="1"
+                android:id="@+id/tuitionfee" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insurances"
+                android:layout_weight="1"
+                android:id="@+id/insurances" />
+
+        </LinearLayout>
+
+        <!-- Solid costs: rent, phone bill -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/linearLayout5"
+            android:weightSum="2"
+            android:layout_below="@+id/linearLayout4"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rent"
+                android:layout_weight="1"
+                android:id="@+id/rent" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:layout_weight="1"
+                android:id="@+id/phone" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- From here: disable scrolling -->
+    </ScrollView>
+
+    <!-- Show balance -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="#d0d3ec"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Balance"
+        android:id="@+id/balancebar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+
