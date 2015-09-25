@@ -19,44 +19,33 @@ public class Nightlife extends AppCompatActivity implements View.OnClickListener
 
     private Button addButton;
     private ListView list;
-    private ArrayList<String> strArray;
-    private ArrayAdapter<String> adapter;
     public EditText date, amount;
     public String d, a, obj;
-    SharedPreferences sp;
-    float total;
+    Expenses exp = new Expenses();
+    String nightlifeobjects = "nightlifeobjects.txt";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nightlife);
-        sp = getSharedPreferences("my preferences", Context.MODE_PRIVATE);
-
         addButton = (Button) findViewById(R.id.add_nightlife);
         list = (ListView) findViewById(R.id.addednightlife);
-        strArray = new ArrayList<String>();
         date = (EditText) findViewById(R.id.date);
         amount = (EditText) findViewById(R.id.amount);
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_activated_1, strArray);
-        list.setAdapter(adapter);
+
+        exp.displayList(list, nightlifeobjects, getApplicationContext());
+
     }
 
     @Override
     public void onClick(View v) {
         d = date.getText().toString();
         a = amount.getText().toString();
+        obj = d + ": €" + a;
 
         if (!d.isEmpty() && !a.isEmpty()) {
-            obj = d + ": €" + a;
-            strArray.add(obj);
-            adapter.notifyDataSetChanged();
-
-            String ntg = sp.getString("nightlife_expenses", "00.00");
-            SharedPreferences.Editor editor = sp.edit();
-            total = Float.parseFloat(ntg) + Float.parseFloat(a);
-            editor.putString("nightlife_expenses", Float.toString(total));
-            editor.commit();
+            exp.writeExpenses(obj, "nightlifeobjects.txt", "nightlife_expenses", getApplicationContext(), a);
         } else {
             Toast.makeText(Nightlife.this, "Fill in date and expenses", Toast.LENGTH_SHORT).show();
         }

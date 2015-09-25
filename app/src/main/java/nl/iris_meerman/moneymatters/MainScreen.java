@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Locale;
 
 import static nl.iris_meerman.moneymatters.R.id.groceries;
@@ -181,7 +183,47 @@ public class MainScreen extends AppCompatActivity {
 
                 editor.commit();
                 finish();
-                startActivity(getIntent());;
+
+                PrintStream a, b, c, d, f, g = null;
+                // whipe all lists of objects (date + amount)
+                try {
+                    a = new PrintStream(openFileOutput("groceriesobjects.txt", MODE_PRIVATE));
+                    a.print(""); a.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    b = new PrintStream(openFileOutput("clothesobjects.txt", MODE_PRIVATE));
+                    b.print(""); b.close();
+                }catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    c = new PrintStream(openFileOutput("travellingobjects.txt", MODE_PRIVATE));
+                    c.print(""); c.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    d = new PrintStream(openFileOutput("nightlifeobjects.txt", MODE_PRIVATE));
+                    d.print(""); d.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    f = new PrintStream(openFileOutput("dinnersobjects.txt", MODE_PRIVATE));
+                    f.print(""); f.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    g = new PrintStream(openFileOutput("presentsobjects.txt", MODE_PRIVATE));
+                    g.print(""); g.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                startActivity(getIntent());
                 Toast.makeText(MainScreen.this, "Reset confirmed", Toast.LENGTH_SHORT).show();
             }
         });

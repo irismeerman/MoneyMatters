@@ -19,31 +19,23 @@ public class Dinners extends AppCompatActivity implements View.OnClickListener {
 
     private Button addButton;
     private ListView list;
-    private ArrayList<String> strArray;
-    private ArrayAdapter<String> adapter;
     public EditText date, amount;
     public String d, a, obj;
-    SharedPreferences sp;
-    float total;
+    Expenses exp = new Expenses();
+    public String dinnersobjects = "dinnersobjects.txt";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dinners);
-        Log.d("test", "1");
-        sp = getSharedPreferences("my preferences", Context.MODE_PRIVATE);
-
         addButton = (Button) findViewById(R.id.add_dinners);
-        Log.d("test", "2");
         list = (ListView) findViewById(R.id.addeddinners);
-        strArray = new ArrayList<String>();
         date = (EditText) findViewById(R.id.date);
         amount = (EditText) findViewById(R.id.amount);
-        Log.d("test", "3");
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_activated_1, strArray);
-        list.setAdapter(adapter);
-        Log.d("test", "4");
+
+        exp.displayList(list, dinnersobjects, getApplicationContext());
+
     }
 
     @Override
@@ -53,17 +45,11 @@ public class Dinners extends AppCompatActivity implements View.OnClickListener {
         obj = d + ": €" + a;
 
         if (!d.isEmpty() && !a.isEmpty()) {
-            strArray.add(obj);
-            adapter.notifyDataSetChanged();
-
-            String ntg = sp.getString("dinners_expenses", "00.00");
-            SharedPreferences.Editor editor = sp.edit();
-            total = Float.parseFloat(ntg) + Float.parseFloat(a);
-            editor.putString("dinners_expenses", Float.toString(total));
-            editor.commit();
+            exp.writeExpenses(obj, "dinnersobjects.txt", "dinners_expenses", getApplicationContext(), a);
         } else {
             Toast.makeText(Dinners.this, "Fill in date and expenses", Toast.LENGTH_SHORT).show();
         }
+
     }
 
 

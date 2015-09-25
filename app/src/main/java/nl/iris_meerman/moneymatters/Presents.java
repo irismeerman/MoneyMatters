@@ -19,31 +19,22 @@ public class Presents extends AppCompatActivity implements View.OnClickListener 
 
     private Button addButton;
     private ListView list;
-    private ArrayList<String> strArray;
-    private ArrayAdapter<String> adapter;
     public EditText date, amount;
     public String d, a, obj;
-    SharedPreferences sp;
-    float total;
+    Expenses exp = new Expenses();
+    String presentsobjects = "presentsobjects.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.presents);
-        Log.d("test", "1");
-        sp = getSharedPreferences("my preferences", Context.MODE_PRIVATE);
 
         addButton = (Button) findViewById(R.id.add_presents);
-        Log.d("test", "2");
         list = (ListView) findViewById(R.id.addedpresents);
-        strArray = new ArrayList<String>();
         date = (EditText) findViewById(R.id.date);
         amount = (EditText) findViewById(R.id.amount);
-        Log.d("test", "3");
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_activated_1, strArray);
-        list.setAdapter(adapter);
-        Log.d("test", "4");
+
+        exp.displayList(list, presentsobjects, getApplicationContext());
     }
 
     @Override
@@ -51,15 +42,9 @@ public class Presents extends AppCompatActivity implements View.OnClickListener 
         d = date.getText().toString();
         a = amount.getText().toString();
         obj = d + ": €" + a;
-        if (!d.isEmpty() && !a.isEmpty()) {
-            strArray.add(obj);
-            adapter.notifyDataSetChanged();
 
-            String ntg = sp.getString("presents_expenses", "00.00");
-            SharedPreferences.Editor editor = sp.edit();
-            total = Float.parseFloat(ntg) + Float.parseFloat(a);
-            editor.putString("presents_expenses", Float.toString(total));
-            editor.commit();
+        if (!d.isEmpty() && !a.isEmpty()) {
+            exp.writeExpenses(obj, "presentsobjects.txt", "presents_expenses", getApplicationContext(), a);
         } else {
             Toast.makeText(Presents.this, "Fill in date and expenses", Toast.LENGTH_SHORT).show();
         }

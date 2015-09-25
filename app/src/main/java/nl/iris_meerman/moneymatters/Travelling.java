@@ -19,48 +19,33 @@ public class Travelling extends AppCompatActivity implements View.OnClickListene
 
     private Button addButton;
     private ListView list;
-    private ArrayList<String> strArray;
-    private ArrayAdapter<String> adapter;
     public EditText date, amount;
     public String d, a, obj;
-    SharedPreferences sp;
-    float total;
+    Expenses exp = new Expenses();
+    String travellingobjects = "travellingobjects.txt";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.travelling);
-        Log.d("test", "1");
-        sp = getSharedPreferences("my preferences", Context.MODE_PRIVATE);
 
         addButton = (Button) findViewById(R.id.add_travelling);
-        Log.d("test", "2");
         list = (ListView) findViewById(R.id.addedtravelling);
-        strArray = new ArrayList<String>();
         date = (EditText) findViewById(R.id.date);
         amount = (EditText) findViewById(R.id.amount);
-        Log.d("test", "3");
-        adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_activated_1, strArray);
-        list.setAdapter(adapter);
-        Log.d("test", "4");
+
+        exp.displayList(list, travellingobjects, getApplicationContext());
     }
 
     @Override
     public void onClick(View v) {
         d = date.getText().toString();
         a = amount.getText().toString();
+        obj = d + ": €" + a;
 
-        if (! d.isEmpty() && ! a.isEmpty()) {
-            obj = d + ": €" + a;
-            strArray.add(obj);
-            adapter.notifyDataSetChanged();
-
-            String ntg = sp.getString("travelling_expenses", "00.00");
-            SharedPreferences.Editor editor = sp.edit();
-            total = Float.parseFloat(ntg) + Float.parseFloat(a);
-            editor.putString("travelling_expenses", Float.toString(total));
-            editor.commit();
+        if (!d.isEmpty() && !a.isEmpty()) {
+            exp.writeExpenses(obj, "travellingobjects.txt", "travelling_expenses", getApplicationContext(), a);
         } else {
             Toast.makeText(Travelling.this, "Fill in date and expenses", Toast.LENGTH_SHORT).show();
         }
