@@ -13,8 +13,7 @@ Hier kun je je te besteden bedragen per post opslaan (per maand bijvoorbeeld).
 - Groceries, clothes buttons etc.
 
 Hier kun je een bedrag dat je hebt besteed toevoegen per post, inclusief datum. 
-Dit wordt vervolgens in een listview gerepresenteerd (note: helaas slaat hij die nog niet op, 
-nog niet aan toegekomen om sqlite onder de knie te krijgen).
+Dit wordt vervolgens in een listview gerepresenteerd. De entries worden opgeslagen in een txt file. 
 
 - Reset all
 
